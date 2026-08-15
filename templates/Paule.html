@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <title>{{ nome }} - CV</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../templates/common.css">
-<link rel="stylesheet" href="../../templates/Paule.css">
+<link rel="stylesheet" href="{{ common_css_href }}">
+<link rel="stylesheet" href="{{ template_css_href }}">
 
 </head>
 <body>
@@ -34,6 +34,7 @@
 </header>
 
 <!-- SKILLS -->
+{% if skills %}
 <section class="section">
   <div class="section-header">
     <span class="section-title">{{ labels.skills }}</span>
@@ -45,8 +46,10 @@
   </div>
   {% endfor %}
 </section>
+{% endif %}
 
 <!-- EXPERIENCE -->
+{% if experience %}
 <section class="section">
   <div class="section-header">
     <span class="section-title">{{ labels.experience }}</span>
@@ -68,8 +71,10 @@
   </div>
   {% endfor %}
 </section>
+{% endif %}
 
 <!-- EDUCATION -->
+{% if education %}
 <section class="section">
   <div class="section-header">
     <span class="section-title">{{ labels.education }}</span>
@@ -93,8 +98,10 @@
   </div>
   {% endfor %}
 </section>
+{% endif %}
 
 <!-- PROJECTS -->
+{% if projects %}
 <section class="section">
   <div class="section-header">
     <span class="section-title">{{ labels.projects }}</span>
@@ -114,8 +121,10 @@
     {% endfor %}
   </ul>
 </section>
+{% endif %}
 
 <!-- CERTIFICATIONS -->
+{% if certifications %}
 <section class="section">
   <div class="section-header">
     <span class="section-title">{{ labels.certifications }}</span>
@@ -135,8 +144,10 @@
     {% endfor %}
   </ul>
 </section>
+{% endif %}
 
 <!-- PUBLICATIONS -->
+{% if publications %}
 <section class="section">
   <div class="section-header">
     <span class="section-title">{{ labels.publications }}</span>
@@ -168,6 +179,7 @@
   </div>
   {% endfor %}
 </section>
+{% endif %}
 
 </body>
 </html>

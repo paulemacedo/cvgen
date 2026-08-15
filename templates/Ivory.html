@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <title>{{ nome }} - CV</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../../templates/common.css">
-<link rel="stylesheet" href="../../../../templates/Ivory.css">
+<link rel="stylesheet" href="{{ common_css_href }}">
+<link rel="stylesheet" href="{{ template_css_href }}">
 
 </head>
 <body>
@@ -14,10 +14,10 @@
 <header>
   <div class="header-left">
     <h1>{{ nome }}</h1>
-    <div class="subtitle">{{ headline }}</div>
+    <div class="subtitle">{{ headline_text }}</div>
   </div>
   <div class="header-right">
-    <div class="subtitle">{{ location }}</div>
+    <div class="subtitle">{{ location_text }}</div>
     <div class="contact">
       <span>
         <a href="{{ contact.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -43,19 +43,22 @@
 </header>
 
 <!-- SKILLS -->
+{% if skills %}
 <section class="section">
   <div class="section-title">{{ labels.skills }}</div>
   <div class="skills-grid">
     {% for core in skills %}
     <div class="skill-core">
-      <strong>{{ core.label[lang] }}</strong>
+      <strong>{{ core.label[lang] if core.label is mapping else core.label }}</strong>
       <span>{{ core["items"] | join(" · ") }}</span>
     </div>
     {% endfor %}
   </div>
 </section>
+{% endif %}
 
 <!-- EXPERIENCE -->
+{% if experience %}
 <section class="section">
   <div class="section-title">{{ labels.experience }}</div>
 
@@ -63,10 +66,10 @@
   <div class="entry">
     <div class="entry-header">
       <div>
-        <div class="entry-title">{{ exp.role }}</div>
+        <div class="entry-title">{{ exp.role[lang] if exp.role is mapping else exp.role }}</div>
         <div class="entry-sub">{{ exp.company }} — {{ exp.location }}</div>
       </div>
-      <div class="entry-meta">{{ exp.date }}</div>
+      <div class="entry-meta">{{ exp.date[lang] if exp.date is mapping else exp.date }}</div>
     </div>
     <ul>
       {% for bullet in exp.bullets %}
@@ -76,8 +79,10 @@
   </div>
   {% endfor %}
 </section>
+{% endif %}
 
 <!-- EDUCATION -->
+{% if education %}
 <section class="section">
   <div class="section-title">{{ labels.education }}</div>
 
@@ -85,10 +90,10 @@
   <div class="entry">
     <div class="entry-header">
       <div>
-        <div class="entry-title">{{ edu.degree }}</div>
+        <div class="entry-title">{{ edu.degree[lang] if edu.degree is mapping else edu.degree }}</div>
         <div class="entry-sub">{{ edu.institution }} — {{ edu.location }}</div>
       </div>
-      <div class="entry-meta">{{ edu.date }}</div>
+      <div class="entry-meta">{{ edu.date[lang] if edu.date is mapping else edu.date }}</div>
     </div>
     {% if edu.details %}
     <ul>
@@ -100,17 +105,19 @@
   </div>
   {% endfor %}
 </section>
+{% endif %}
 
 <!-- PROJECTS -->
+{% if projects %}
 <section class="section">
   <div class="section-title">{{ labels.projects }}</div>
   <ul>
     {% for project in projects %}
       {% if project.name is defined %}
         <li>
-          <strong>{{ project.name[lang] }}</strong>
-          {% if project.subtitle %} | {{ project.subtitle[lang] }}{% endif %}
-          {% if project.description %}<br>{{ project.description[lang] }}{% endif %}
+            <strong>{{ project.name[lang] if project.name is mapping else project.name }}</strong>
+            {% if project.subtitle %} | {{ project.subtitle[lang] if project.subtitle is mapping else project.subtitle }}{% endif %}
+            {% if project.description %}<br>{{ project.description[lang] if project.description is mapping else project.description }}{% endif %}
         </li>
       {% else %}
         <li>{{ project }}</li>
@@ -118,8 +125,10 @@
     {% endfor %}
   </ul>
 </section>
+{% endif %}
 
 <!-- CERTIFICATIONS -->
+{% if certifications %}
 <section class="section">
   <div class="section-title">{{ labels.certifications }}</div>
   <ul>
@@ -128,8 +137,10 @@
     {% endfor %}
   </ul>
 </section>
+{% endif %}
 
 <!-- PUBLICATIONS -->
+{% if publications %}
 <section class="section">
   <div class="section-title">{{ labels.publications }}</div>
 
@@ -155,6 +166,7 @@
   </div>
   {% endfor %}
 </section>
+{% endif %}
 
 </body>
 </html>

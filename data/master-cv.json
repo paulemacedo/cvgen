@@ -6,12 +6,12 @@
     "usage": "Filtre por 'areas' e 'tags' para gerar JSONs de vagas específicas. Bullets têm tags independentes para granularidade fina."
   },
   "name": {
-    "pt": "John Doe",
-    "en": "John Doe"
+    "pt": "Paule Macedo",
+    "en": "Paule Macedo"
   },
   "location": {
-    "pt": "São Paulo, SP — Brasil",
-    "en": "São Paulo, SP — Brazil"
+    "pt": "Rio de Janeiro, RJ — Brasil",
+    "en": "Rio de Janeiro, RJ — Brazil"
   },
   "headline": {
     "ti_general": {
@@ -33,21 +33,21 @@
   },
   "summary": {
     "cybersecurity": {
-      "pt": "Estudante de Ciência da Computação com foco na intersecção entre desenvolvimento de software e segurança ofensiva. Mentalidade Security by Design: aplicações resilientes nascem de código bem estruturado e testado sob a ótica de um atacante. Atuou como pesquisador na Tecnolab no projeto FinShield, integrando protocolos de autenticação em sistemas multiplataforma e reduzindo 50% das vulnerabilidades críticas. Certificado em Fundamentos de Cibersegurança (80h). Proficiente em Inglês C1 Advanced.",
-      "en": "Computer Science student focused on the intersection of software development and offensive security. Security by Design mindset: resilient applications are born from well-structured code tested from an attacker's perspective. Worked as a researcher at Tecnolab on the FinShield project, integrating authentication protocols across multi-platform systems and reducing critical vulnerabilities by 50%. Certified in Cybersecurity Fundamentals (80h). C1 Advanced English proficiency."
+      "pt": "Estudante de Ciência da Computação com trajetória na intersecção entre desenvolvimento de software e segurança ofensiva. Mentalidade 'Security by Design': acredito que aplicações resilientes nascem de um código bem estruturado e testado sob a ótica de um atacante. Atuei como Pesquisador na RNP no projeto TV 3.0, universalizando protocolos de rede em sistemas multiplataforma e validando a integridade de comunicações via APIs REST, reduzindo 60% das falhas críticas. Certificado em Fundamentos de Cibersegurança (80h) pelo Hackers do Bem (SENAI/RNP). Proficiente em Inglês C1 Advanced.",
+      "en": "Computer Science student with a background at the intersection of software development and offensive security. Security by Design mindset: resilient applications are born from well-structured code tested from an attacker's perspective. Worked as a Researcher at RNP on the TV 3.0 project, universalizing network protocols across multi-platform systems and validating REST API integrity, reducing critical failures by 60%. Certified in Cybersecurity Fundamentals (80h) by Hackers do Bem (SENAI/RNP). C1 Advanced English proficiency."
     },
     "support": {
-      "pt": "Técnico de Suporte com experiência em manutenção de hardware e software. Capacidade de resolver problemas técnicos de forma eficiente, garantindo disponibilidade e desempenho dos sistemas. Proficiente em diagnóstico e resolução de falhas em ambientes corporativos.",
-      "en": "Support Technician with experience in hardware and software maintenance. Ability to resolve technical issues efficiently, ensuring system availability and performance. Proficient in diagnosing and resolving failures in corporate environments."
+      "pt": "Técnico de Suporte Técnico com experiência em manutenção de hardware e software. Capacidade de resolver problemas técnicos de forma eficiente e eficaz, garantindo a disponibilidade e desempenho dos sistemas. Proficiente em diagnóstico e resolução de falhas em ambientes corporativos.",
+      "en": "Technical Support Specialist with experience in hardware and software maintenance. Ability to resolve technical issues efficiently and effectively, ensuring system availability and performance. Proficient in diagnosing and resolving failures in corporate environments."
     }
   },
   "contact": {
-    "email": "johndoe@example.com",
-    "phone": "+55 11 91234-5678",
-    "linkedin": "https://linkedin.com/in/johndoe",
-    "github": "https://github.com/johndoe",
-    "website": "https://johndoe.dev",
-    "portfolio": "https://johndoe.dev/portfolio"
+    "email": "paulemacedo@outlook.com",
+    "phone": "+55 21 96907-9474",
+    "linkedin": "https://linkedin.com/in/paulemacedo",
+    "github": "https://github.com/paulemacedo",
+    "website": "https://www.paule.com.br",
+    "portfolio": "https://www.paule.com.br"
   },
   "skills": [
     {
@@ -87,7 +87,7 @@
       "id": "systems",
       "label": { "pt": "Sistemas e Redes", "en": "Systems & Networking" },
       "items": [
-        "Linux (Ubuntu/Debian)",
+        "Linux (Arch/Hyprland)",
         "Networking Fundamentals",
         "TCP/IP",
         "DNS",
@@ -184,13 +184,13 @@
 
   "experience": [
     {
-      "id": "tecnolab",
+      "id": "rnp",
       "role": {
         "pt": "Engenheiro de Software (Iniciação Científica)",
         "en": "Software Engineer (Undergraduate Researcher)"
       },
-      "company": "Tecnolab",
-      "location": "São Paulo, SP, BR",
+      "company": "RNP",
+      "location": "Rio de Janeiro, RJ, BR",
       "date": {
         "start": "2023-07",
         "end": "2024-09",
@@ -200,51 +200,51 @@
       "areas": ["ti", "cybersecurity", "appsec", "pesquisa", "infra"],
       "bullets": [
         {
-          "id": "tecnolab_ports",
+          "id": "rnp_ports",
           "tags": ["ti", "infra", "sistemas"],
-          "pt": "Universalizei a seleção de portas de rede no middleware FinShield, permitindo conexão estável em ambientes Windows, Linux e macOS, eliminando dependência de hardware específico e viabilizando demonstrações em 4+ eventos nacionais.",
-          "en": "Universalized network port selection in the FinShield middleware to support Windows, Linux, and macOS, eliminating hardware-specific dependencies and enabling demonstrations at 4+ national tech events."
+          "pt": "Universalizei a seleção de portas de rede no middleware Ginga, permitindo conexão em ambientes Windows/Linux e MacOS, eliminando a dependência de hardware específico e viabilizando a apresentação do projeto em 4+ feiras nacionais.",
+          "en": "Universalized network port selection in the Ginga middleware to support Windows/Linux (in addition to macOS), eliminating hardware-specific dependencies and enabling project demonstrations at 4+ national tech fairs."
         },
         {
-          "id": "tecnolab_ports_cyber",
+          "id": "rnp_ports_cyber",
           "tags": ["cybersecurity", "redes"],
-          "pt": "Universalizei a seleção de portas de rede no middleware FinShield, garantindo conexão estável em ambientes Windows, Linux e macOS. Esta ação eliminou a dependência de hardware específico e viabilizou a apresentação do projeto em 4+ feiras nacionais.",
-          "en": "Universalized network port selection in the FinShield middleware to ensure stable connections across Windows, Linux, and macOS environments, eliminating hardware-specific dependencies and enabling demonstrations at 4+ national tech fairs."
+          "pt": "Universalizei a seleção de portas de rede no middleware Ginga, garantindo conexão estável em ambientes Windows, Linux e MacOS. Esta ação eliminou a dependência de hardware específico e viabilizou a apresentação do projeto em 4+ feiras nacionais.",
+          "en": "Universalized network port selection in the Ginga middleware to ensure stable connections across Windows, Linux, and macOS environments, eliminating hardware-specific dependencies and enabling demonstrations at 4+ national tech fairs."
         },
         {
-          "id": "tecnolab_templates",
-          "tags": ["ti", "webdev"],
-          "pt": "Criei templates para telas de dashboard em HTML/CSS/JavaScript utilizados em 4+ eventos nacionais, facilitando a interação de 200+ visitantes durante demonstrações.",
-          "en": "Developed dashboard templates in HTML/CSS/JavaScript deployed at 4+ national events, streamlining interaction for 200+ visitors during live demos."
+          "id": "rnp_templates",
+          "tags": ["ti", "webdev", "vr"],
+          "pt": "Criei templates para telas de perfil em HTML/CSS/Javascript (TV) e Unity/C# (VR), utilizados em 4+ eventos nacionais, facilitando a interação de 200+ visitantes durante demonstrações.",
+          "en": "Developed user profile templates for Immersive TV (HTML/CSS/JavaScript) and Virtual Reality (Unity/C#), deployed at 4+ national events, streamlining interaction for 200+ visitors during live demos."
         },
         {
-          "id": "tecnolab_api",
+          "id": "rnp_api",
           "tags": ["cybersecurity", "appsec", "api"],
-          "pt": "Validei a comunicação via Insomnia/APIs REST entre o middleware e dispositivos clientes, garantindo a integridade da integração e a estabilidade do fluxo de dados.",
-          "en": "Validated communication via Insomnia/REST APIs between middleware and client devices, ensuring integration integrity and data flow stability."
+          "pt": "Validei a comunicação via Insomnia/APIs REST entre o middleware e dispositivos Oculus VR, garantindo a integridade da integração e a estabilidade do fluxo de dados.",
+          "en": "Validated communication via Insomnia/REST APIs between middleware and Oculus VR devices, ensuring integration integrity and data flow stability."
         },
         {
-          "id": "tecnolab_dualboot",
+          "id": "rnp_dualboot",
           "tags": ["ti", "cybersecurity", "infra", "linux"],
           "pt": "Implementei dual boot (Ubuntu/Windows) em 3+ notebooks e assegurei a continuidade operacional, resultando na redução de 60% em falhas críticas durante demonstrações técnicas ao vivo.",
           "en": "Implemented dual-boot (Ubuntu/Windows) configurations on 3+ laptops and ensured operational continuity, resulting in a 60% reduction in critical failures during live technical demonstrations."
         },
         {
-          "id": "tecnolab_pesquisa",
+          "id": "rnp_pesquisa",
           "tags": ["pesquisa", "publicacao"],
-          "pt": "Investigação de interoperabilidade e comunicação entre dispositivos conectados, com foco em arquitetura de sistemas distribuídos. Resultados publicados na conferência TechBR.",
-          "en": "Investigated interoperability and communication between connected devices, focusing on distributed systems architecture. Results published at TechBR conference."
+          "pt": "Investigação de interoperabilidade e comunicação entre dispositivos conectados, com foco em arquitetura de sistemas distribuídos. Resultados publicados no SBC WebMedia.",
+          "en": "Investigated interoperability and communication between connected devices, focusing on distributed systems architecture. Results published at SBC WebMedia."
         }
       ]
     },
     {
-      "id": "fixmobile",
+      "id": "axofix",
       "role": {
         "pt": "Técnico em Manutenção de Dispositivos Móveis",
         "en": "Mobile Device Repair Technician"
       },
-      "company": "FixMobile",
-      "location": "São Paulo, SP, BR",
+      "company": "Axofix",
+      "location": "Rio de Janeiro, RJ, BR",
       "date": {
         "start": "2023-01",
         "end": null,
@@ -254,25 +254,25 @@
       "areas": ["hardware", "manutencao", "atendimento"],
       "bullets": [
         {
-          "id": "fixmobile_diag",
+          "id": "axofix_diag",
           "tags": ["hardware", "diagnostico"],
           "pt": "Diagnóstico lógico e físico de smartphones e dispositivos móveis, garantindo a integridade dos componentes internos e a continuidade operacional dos aparelhos.",
           "en": "Performed logical and physical diagnosis of smartphones and mobile devices, ensuring internal component integrity and device operational continuity."
         },
         {
-          "id": "fixmobile_hardware",
+          "id": "axofix_hardware",
           "tags": ["hardware", "solda"],
           "pt": "Substituição de componentes críticos (telas, conectores e baterias) e uso de estação de solda e retrabalho para reparos de alta precisão em placas de circuito.",
           "en": "Replaced critical components (screens, connectors, and batteries) and used soldering and rework stations for high-precision circuit board repairs."
         },
         {
-          "id": "fixmobile_dados",
+          "id": "axofix_dados",
           "tags": ["hardware", "cybersecurity", "dados"],
           "pt": "Aplicação de boas práticas de manuseio de hardware sensível e suporte técnico focado na recuperação e segurança de dados em dispositivos comprometidos.",
           "en": "Applied best practices for handling sensitive hardware and provided technical support focused on data recovery and security in compromised devices."
         },
         {
-          "id": "fixmobile_gestao",
+          "id": "axofix_gestao",
           "tags": ["autonomo", "gestao"],
           "pt": "Responsável pelo fluxo completo de atendimento técnico, gestão de serviços e controle de qualidade como profissional autônomo.",
           "en": "Managed the complete technical service workflow, service management, and quality control as an independent professional."
@@ -280,13 +280,13 @@
       ]
     },
     {
-      "id": "eventpro",
+      "id": "fesudeperj",
       "role": {
         "pt": "Cinegrafista",
         "en": "Videographer"
       },
-      "company": "EventPro",
-      "location": "São Paulo, SP, BR",
+      "company": "FESUDEPERJ",
+      "location": "Rio de Janeiro, RJ, BR",
       "date": {
         "start": null,
         "end": null,
@@ -297,10 +297,10 @@
       "areas": ["audiovisual", "producao", "institucional"],
       "bullets": [
         {
-          "id": "eventpro_filmagem",
+          "id": "fesudeperj_filmagem",
           "tags": ["audiovisual", "eventos"],
-          "pt": "Cobertura audiovisual de eventos e atividades institucionais, garantindo registro de qualidade para fins de comunicação e documentação.",
-          "en": "Audiovisual coverage of institutional events and activities, ensuring quality recording for communication and documentation purposes."
+          "pt": "Cobertura audiovisual de eventos e atividades institucionais da Defensoria Pública, garantindo registro de qualidade para fins de comunicação e documentação.",
+          "en": "Audiovisual coverage of institutional events and activities for the Public Defender's Office, ensuring quality recording for communication and documentation purposes."
         }
       ],
       "_note": "Adicione mais bullets conforme lembrar: equipamentos usados, tipo de edição, volume de eventos, etc."
@@ -309,13 +309,13 @@
 
   "education": [
     {
-      "id": "unimetro",
+      "id": "ibmr",
       "degree": {
         "pt": "Bacharelado em Ciência da Computação",
         "en": "Bachelor of Science in Computer Science"
       },
-      "institution": "UniMetro",
-      "location": "São Paulo, SP, BR",
+      "institution": "Centro Universitário IBMR",
+      "location": "Rio de Janeiro, RJ, BR",
       "date": {
         "start": "2026-02",
         "end": "2027-12",
@@ -325,13 +325,13 @@
       "details": { "pt": [], "en": [] }
     },
     {
-      "id": "fatec",
+      "id": "cefet",
       "degree": {
-        "pt": "Tecnólogo em Análise e Desenvolvimento de Sistemas",
-        "en": "Associate Degree in Systems Analysis and Development"
+        "pt": "Bacharelado em Ciência da Computação",
+        "en": "Bachelor of Science in Computer Science"
       },
-      "institution": "FATEC São Paulo",
-      "location": "São Paulo, SP, BR",
+      "institution": "CEFET-RJ",
+      "location": "Rio de Janeiro, RJ, BR",
       "date": {
         "start": "2019",
         "end": "2025",
@@ -339,35 +339,35 @@
         "en": "2019 – 2025"
       },
       "details": {
-        "pt": ["Disciplinas relevantes: Matemática Aplicada, Algoritmos e Estruturas de Dados, Programação Orientada a Objetos, Sistemas Operacionais, Redes de Computadores, Engenharia de Software, Sistemas de Banco de Dados, Desenvolvimento Web, Arquitetura de Computadores, Lógica Matemática."],
-        "en": ["Relevant coursework: Applied Mathematics, Algorithms & Data Structures, Object-Oriented Programming, Operating Systems, Computer Networks, Software Engineering, Database Systems, Web Development, Computer Architecture, Mathematical Logic."]
+        "pt": ["Disciplinas relevantes: Matemática Aplicada, Algoritmos e Estruturas de Dados, Programação Orientada a Objetos, Sistemas Operacionais, Redes de Computadores, Engenharia de Software, Engenharia de Requisitos, Sistemas de Banco de Dados, Desenvolvimento de Software Web, Arquitetura de Computadores, Lógica Matemática, Fundamentos de Blockchain."],
+        "en": ["Relevant coursework: Applied Mathematics, Algorithms & Data Structures, Object-Oriented Programming, Operating Systems, Computer Networks, Software Engineering, Requirements Engineering, Database Systems, Web Software Development, Computer Architecture, Mathematical Logic, Blockchain Fundamentals."]
       }
     }
   ],
 
   "certifications": [
+        {
+          "id": "cna",
+          "name": {
+            "pt": "Língua Inglesa",
+            "en": "English Language"
+          },
+          "issuer": "CNA Idiomas",
+          "date": {
+            "start": "2016",
+            "end": "2021",
+            "pt": "2016 – 2021",
+            "en": "2016 – 2021"
+          },
+          "details": { "pt": [], "en": [] }
+        },
     {
-      "id": "escola_idiomas",
-      "name": {
-        "pt": "Língua Inglesa",
-        "en": "English Language"
-      },
-      "issuer": "Escola de Idiomas XYZ",
-      "date": {
-        "start": "2016",
-        "end": "2021",
-        "pt": "2016 – 2021",
-        "en": "2016 – 2021"
-      },
-      "details": { "pt": [], "en": [] }
-    },
-    {
-      "id": "cyber_fundamentals",
+      "id": "hackers_do_bem",
       "name": {
         "pt": "Fundamentos de Cibersegurança",
         "en": "Cybersecurity Fundamentals"
       },
-      "issuer": "SecureAcademy — SENAI & EscolaNet",
+      "issuer": "Hackers do Bem — SENAI & Escola Superior de Redes (RNP)",
       "hours": 80,
       "date": "2024-02",
       "areas": ["cybersecurity", "ti"],
@@ -379,25 +379,25 @@
         "pt": "Lei Geral de Proteção de Dados (LGPD)",
         "en": "Brazilian General Data Protection Law (LGPD)"
       },
-      "issuer": "Instituto de Educação Digital",
+      "issuer": "Fundação Bradesco",
       "hours": 2,
       "date": null,
       "areas": ["cybersecurity", "ti", "compliance"],
       "priority": 2
     },
     {
-      "id": "english_b1",
+      "id": "cambridge_b1",
       "name": {
         "pt": "Certificado de Proficiência em Inglês B1 (Intermediário)",
         "en": "Certificate of English Language Proficiency B1 (Intermediate)"
       },
-      "issuer": "Global Language Assessment",
+      "issuer": "Cambridge Assessment English",
       "date": "2021-02",
       "areas": ["all"],
       "priority": 3
     },
     {
-      "id": "english_c1",
+      "id": "efset_c1",
       "name": {
         "pt": "Certificado de Proficiência em Inglês C1 (Avançado)",
         "en": "Certificate of English Language Proficiency C1 (Advanced)"
@@ -409,14 +409,14 @@
       "priority": 4
     },
     {
-      "id": "python_bootcamp",
+      "id": "vivo_python",
       "name": {
-        "pt": "Python AI Backend Developer",
-        "en": "Python AI Backend Developer"
+        "pt": "Coding Future Vivo — Python AI Backend Developer",
+        "en": "Coding Future Vivo — Python AI Backend Developer"
       },
-      "issuer": "CodePath",
+      "issuer": "DIO",
       "date": null,
-      "url": "https://codepath.example.com/bootcamp/python-ai",
+      "url": "https://www.dio.me/bootcamp/codingfuture-vivo-python-ai-backenddeveloper",
       "areas": ["ti", "dev", "python"],
       "priority": 5,
       "_note": "Confirmar se concluído e adicionar data"
@@ -425,8 +425,8 @@
 
   "projects": [
     {
-      "id": "sysforge",
-      "name": "SysForge",
+      "id": "archemy",
+      "name": "Archemy",
       "subtitle": {
         "ti": {
           "pt": "Automação de Sistemas Linux (Bash)",
@@ -437,22 +437,22 @@
           "en": "Automation & Security Engineering (Bash)"
         }
       },
-      "github": "https://github.com/johndoe/sysforge",
+      "github": "https://github.com/paulemacedo/archemy",
       "areas": ["ti", "cybersecurity", "linux", "infra"],
       "description": {
         "ti": {
-          "pt": "Ferramenta em Bash para automatizar configurações de sistemas Linux com dotfiles e gerenciadores de pacotes.",
-          "en": "Bash tool for automating Linux system setups with dotfiles and package managers."
+          "pt": "Ferramenta em Bash para automatizar configurações do Arch Linux com dotfiles e Hyprland.",
+          "en": "Bash tool for automating Arch Linux setups with dotfiles, Hyprland, and dual boot sync."
         },
         "cybersecurity": {
-          "pt": "Script modular para provisionamento seguro de sistemas Linux com detecção automática de gerenciadores de pacotes (APT, DNF, Pacman). Automatiza hardening via sysctl, gerenciamento de logs e backups, e inclui módulos para instalação de ferramentas como Burp Suite.",
-          "en": "Modular script for secure Linux system provisioning with automatic package manager detection (APT, DNF, Pacman). Automates hardening via sysctl, log and backup management, and includes modules for security tools installation such as Burp Suite."
+          "pt": "Script modular para provisionamento seguro de sistemas Linux com detecção automática de gerenciadores de pacotes (Pacman, APT, DNF). Automatiza hardening via sysctl, gerenciamento de logs e backups, e inclui módulos para instalação de ferramentas como Burp Suite.",
+          "en": "Modular script for secure Linux system provisioning with automatic package manager detection (Pacman, APT, DNF). Automates hardening via sysctl, log and backup management, and includes modules for security tools installation such as Burp Suite."
         }
       }
     },
     {
-      "id": "tastelab",
-      "name": "TasteLab",
+      "id": "byte_de_sabor",
+      "name": "Byte de Sabor",
       "subtitle": {
         "ti": {
           "pt": "Aplicação Full-stack (React, Node.js, MongoDB)",
@@ -463,12 +463,12 @@
           "en": "Full-stack Web Security (React, Node.js, MongoDB)"
         }
       },
-      "github": "https://github.com/johndoe/tastelab",
+      "github": "https://github.com/paulemacedo/byte-de-sabor",
       "areas": ["ti", "cybersecurity", "appsec", "dev", "webdev"],
       "description": {
         "ti": {
-          "pt": "Aplicação Full-stack para personalização e pedido de refeições, desenvolvida com React, Redux, MongoDB e Node.js.",
-          "en": "Full-stack app for customizing and ordering meals. React, Redux, MongoDB, Node.js."
+          "pt": "Aplicação Full-stack para personalização e pedido de açaí, desenvolvida com React, Redux, MongoDB e Node.js.",
+          "en": "Full-stack app for customizing and ordering açaí bowls. React, Redux, MongoDB, Node.js."
         },
         "cybersecurity": {
           "pt": "Aplicação focada em controles de segurança críticos: autenticação JWT com expiração controlada, hashing com bcrypt e controle de acesso baseado em funções (RBAC). Documentação via Swagger/OpenAPI e políticas de CORS para consumo seguro de APIs.",
@@ -477,8 +477,8 @@
       }
     },
     {
-      "id": "drone_sim",
-      "name": "DroneSim",
+      "id": "uav_path_planner",
+      "name": "UAV Path Planner",
       "subtitle": {
         "ti": {
           "pt": "Simulação de Algoritmos para Drones (Python)",
@@ -495,7 +495,7 @@
       }
     },
     {
-      "id": "cv_generator",
+      "id": "Cv_Generator",
       "name": "CV Generator",
       "subtitle": {
         "ti": {
@@ -503,7 +503,7 @@
           "en": "Resume Generator (Python, JSON)"
         }
       },
-      "github": "https://github.com/johndoe/cv-generator",
+      "github": "https://github.com/paulemacedo/CV-Generator",
       "areas": ["ti", "pesquisa", "desenvolvimento"],
       "description": {
         "ti": {
@@ -516,23 +516,17 @@
 
   "publications": [
     {
-      "id": "techbr_2023",
-      "title": {
-        "pt": "FinShield: Uma Extensão de Web Services para Suporte Multiplataforma em Sistemas Financeiros",
-        "en": "FinShield: A Web Services Extension for Multi-Platform Support in Financial Systems"
-      },
-      "venue": "TechBR Conference",
-      "date": {
-        "pt": "Out 2023",
-        "en": "Oct 2023"
-      },
-      "doi": "10.5753/techbr.2023.123456",
-      "doi_url": "https://doi.org/10.5753/techbr.2023.123456",
+      "id": "webmedia_2023",
+      "title": "TV 3.0: A Ginga-NCL and Common Core Webservices Extension for Multidevice Support",
+      "venue": "SBC WebMedia",
+      "date": "2023-10",
+      "doi": "10.5753/webmedia_estendido.2023.236105",
+      "doi_url": "https://doi.org/10.5753/webmedia_estendido.2023.236105",
       "role": { "pt": "Coautor", "en": "Co-author" },
       "areas": ["ti", "cybersecurity", "pesquisa"],
       "description": {
-        "pt": "Coautor de artigo técnico sobre extensão de web services para suporte multiplataforma em sistemas financeiros. Investigação de interoperabilidade e comunicação entre dispositivos conectados, com foco em arquitetura de sistemas distribuídos.",
-        "en": "Co-authored technical article on web services extension for multi-platform support in financial systems. Investigation of interoperability and communication between connected devices, focusing on distributed systems architecture."
+        "pt": "Coautor de artigo técnico sobre extensão de web services para suporte a múltiplos dispositivos na TV 3.0. Investigação de interoperabilidade e comunicação entre dispositivos conectados, com foco em arquitetura de sistemas distribuídos.",
+        "en": "Co-authored technical article on web services extension for multidevice support in TV 3.0. Investigation of interoperability and communication between connected devices, focusing on distributed systems architecture."
       }
     }
   ],

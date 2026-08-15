@@ -11,6 +11,7 @@ from __future__ import annotations
 # =============================================================================
 
 import json
+import shutil
 import sys
 import unicodedata
 import re
@@ -20,8 +21,15 @@ from typing import Any
 from jinja2 import Environment, FileSystemLoader
 
 AVAILABLE_TEMPLATES = ["ivory", "paule"]
-DEFAULT_TEMPLATE = "paule"
+DEFAULT_TEMPLATE = "ivory"
 AVAILABLE_LANGUAGES = ["en", "pt"]
+EXAMPLES_FOLDER_NAME = "Examples"
+OUTPUT_HTML_DIR_NAME = "temp"
+TEMPLATE_CSS_FILES = {
+    "ivory": "Ivory.css",
+    "paule": "Paule.css",
+    "master": "master.css",
+}
 DEFAULT_LABELS = {
     "pt": {
         "skills": "Competências",
@@ -52,7 +60,7 @@ WORKSPACE_ROOT = Path(__file__).resolve().parent
 DATA_DIR = WORKSPACE_ROOT / "data"
 TEMPLATES_DIR = WORKSPACE_ROOT / "templates"
 OUTPUT_DIR = WORKSPACE_ROOT / "output"
-HTML_OUTPUT_DIR = OUTPUT_DIR / "html"
+HTML_OUTPUT_DIR = OUTPUT_DIR / OUTPUT_HTML_DIR_NAME
 
 LANGUAGE_CODE_MAP = {
     "pt": "PT-BR",
@@ -86,6 +94,43 @@ def parse_cli_arguments(arguments: list[str]) -> tuple[list[str], list[str], boo
         sys.exit(1)
 
     return requested_languages, selected_templates, explicit_language_request
+
+
+def is_examples_path(profile_path: Path) -> bool:
+    relative_parent = profile_path.parent.relative_to(DATA_DIR)
+    return any(part.lower() == EXAMPLES_FOLDER_NAME.lower() for part in relative_parent.parts)
+
+
+def discover_profile_files() -> list[Path]:
+    json_files = sorted(DATA_DIR.rglob("*.json"))
+    if not json_files:
+        return []
+
+    non_examples_files = [profile_path for profile_path in json_files if not is_examples_path(profile_path)]
+    if non_examples_files:
+        return non_examples_files
+
+    return [profile_path for profile_path in json_files if is_examples_path(profile_path)]
+
+
+def resolve_topic_output_dir(profile_path: Path) -> Path:
+    relative_parent = profile_path.parent.relative_to(DATA_DIR)
+    return OUTPUT_DIR.joinpath(*relative_parent.parts)
+
+
+def get_template_css_filename(template_name: str) -> str:
+    return TEMPLATE_CSS_FILES.get(template_name.lower(), f"{template_name}.css")
+
+
+def copy_template_assets(output_dir: Path, template_names: list[str]) -> None:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(TEMPLATES_DIR / "common.css", output_dir / "common.css")
+
+    for template_name in dict.fromkeys(template_names):
+        css_filename = get_template_css_filename(template_name)
+        css_source = TEMPLATES_DIR / css_filename
+        if css_source.exists():
+            shutil.copy2(css_source, output_dir / css_filename)
 
 
 try:
@@ -150,6 +195,15 @@ def build_output_basename(profile: dict[str, Any], profile_path: Path, language:
     area_part = slugify_filename_part(format_area_name(profile_path.stem)) or "Area"
     language_part = LANGUAGE_CODE_MAP.get(language, language.upper())
     return f"CV-{name_part}-{area_part}-{language_part}"
+
+
+def build_html_output_filename(profile_path: Path, basename: str) -> str:
+    relative_parent = profile_path.parent.relative_to(DATA_DIR)
+    if not relative_parent.parts:
+        return basename
+
+    topic_prefix = "-".join(slugify_filename_part(format_area_name(part)) for part in relative_parent.parts)
+    return f"{topic_prefix}-{basename}" if topic_prefix else basename
 
 
 def normalize_text_list(value: Any, language: str) -> list[str]:
@@ -496,6 +550,8 @@ def render_profile(
     profile: dict[str, Any],
     language: str,
     labels: dict[str, str],
+    common_css_href: str,
+    template_css_href: str,
 ) -> str:
     contact = prepare_contact(profile)
     display_name = localize_text(profile.get("name", profile.get("nome", "")), language)
@@ -525,6 +581,8 @@ def render_profile(
         certifications=prepare_certifications(profile, language),
         publications=prepare_publications(profile, language),
         labels=labels,
+        common_css_href=common_css_href,
+        template_css_href=template_css_href,
         _meta=profile.get("_meta", {}),
     )
 
@@ -552,25 +610,36 @@ def generate_cv_files(
         return
 
     templates_to_use = ["Master"] if prefix == "master" else template_names
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    HTML_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    pdf_output_dir = resolve_topic_output_dir(profile_path)
+    html_output_dir = HTML_OUTPUT_DIR
+    copy_template_assets(html_output_dir, templates_to_use)
+    pdf_output_dir.mkdir(parents=True, exist_ok=True)
 
     for template_name in templates_to_use:
         template = environment.get_template(f"{template_name}.html")
+        template_css_href = get_template_css_filename(template_name)
 
         for language in profile_languages:
             labels = get_labels_for_language(labels_by_language, language)
-            html = render_profile(template, profile, language, labels)
+            html = render_profile(
+                template,
+                profile,
+                language,
+                labels,
+                common_css_href="common.css",
+                template_css_href=template_css_href,
+            )
             output_basename = build_output_basename(profile, profile_path, language)
             if len(templates_to_use) > 1:
                 output_basename = f"{output_basename}-{template_name.title()}"
+            html_filename = build_html_output_filename(profile_path, output_basename)
 
-            html_path = HTML_OUTPUT_DIR / f"{output_basename}.html"
+            html_path = html_output_dir / f"{html_filename}.html"
             html_path.write_text(html, encoding="utf-8")
             print(f"CV gerado:  {html_path.relative_to(WORKSPACE_ROOT)}")
 
             if PDF_ENABLED:
-                pdf_path = OUTPUT_DIR / f"{output_basename}.pdf"
+                pdf_path = pdf_output_dir / f"{output_basename}.pdf"
                 try:
                     generate_pdf(html_path, pdf_path)
                     print(f"PDF gerado: {pdf_path.relative_to(WORKSPACE_ROOT)}")
@@ -580,7 +649,7 @@ def generate_cv_files(
 
 def main() -> None:
     requested_languages, template_names, explicit_language_request = parse_cli_arguments(sys.argv[1:])
-    data_files = sorted(DATA_DIR.glob("*.json"))
+    data_files = discover_profile_files()
 
     if not data_files:
         print("No data files found in the 'data' folder.")
