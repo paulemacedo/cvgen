@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ nome }} - CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ common_css_href }}">
+  <link rel="stylesheet" href="{{ template_css_href }}">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="masthead">
+      <div class="eyebrow">Professional Profile</div>
+      <h1>{{ nome }}</h1>
+      <div class="headline-row">
+        {% if location_text %}<span>{{ location_text }}</span>{% endif %}
+        {% if headline_text %}
+          {% if location_text %}<span class="divider">•</span>{% endif %}
+          <span>{{ headline_text }}</span>
+        {% endif %}
+      </div>
+
+      <div class="contact-row">
+        {% if contact.email %}<span><strong>Email</strong> <a href="mailto:{{ contact.email }}">{{ contact.email }}</a></span>{% endif %}
+        {% if contact.phone %}<span><strong>Phone</strong> {{ contact.phone }}</span>{% endif %}
+        {% if contact.website %}<span><strong>Website</strong> <a href="{{ contact.website }}" target="_blank" rel="noopener noreferrer">{{ contact.website | replace('https://', '') }}</a></span>{% endif %}
+        {% if contact.linkedin %}<span><strong>LinkedIn</strong> <a href="{{ contact.linkedin }}" target="_blank" rel="noopener noreferrer">{{ contact.linkedin | replace('https://', '') }}</a></span>{% endif %}
+        {% if contact.github %}<span><strong>GitHub</strong> <a href="{{ contact.github }}" target="_blank" rel="noopener noreferrer">{{ contact.github | replace('https://', '') }}</a></span>{% endif %}
+      </div>
+    </header>
+
+    {% set summary_text = summary[lang] if summary is mapping else summary %}
+    {% if summary_text %}
+    <section class="section">
+      <h2>{{ labels.summary }}</h2>
+      <p class="summary-text">{{ summary_text }}</p>
+    </section>
+    {% endif %}
+
+    {% if skills %}
+    <section class="section">
+      <h2>{{ labels.skills }}</h2>
+      <div class="skill-list single-column-list">
+        {% for core in skills %}
+        <div class="skill-item">
+          <strong>{{ core.label[lang] if core.label is mapping else core.label }}</strong>
+          <span>{{ core["items"] | join(" · ") }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+        {% if projects %}
+    <section class="section">
+      <h2>{{ labels.projects }}</h2>
+      {% for project in projects %}
+      <article class="entry compact-entry">
+        {% if project.name is defined %}
+          <div class="entry-title">{{ project.name[lang] if project.name is mapping else project.name }}</div>
+          {% if project.subtitle %}<div class="entry-company">{{ project.subtitle[lang] if project.subtitle is mapping else project.subtitle }}</div>{% endif %}
+          {% if project.description %}<p class="project-description">{{ project.description[lang] if project.description is mapping else project.description }}</p>{% endif %}
+        {% else %}
+          <div class="entry-title">{{ project }}</div>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if experience %}
+    <section class="section section section-flow">
+      <h2>{{ labels.experience }}</h2>
+      {% for exp in experience %}
+      <article class="entry">
+        <div class="entry-header">
+          <div>
+            <div class="entry-title">{{ exp.role[lang] if exp.role is mapping else exp.role }}</div>
+            <div class="entry-company">{{ exp.company }}</div>
+          </div>
+          <div class="entry-date">{{ exp.date[lang] if exp.date is mapping else exp.date }}</div>
+        </div>
+        {% if exp.location %}<div class="entry-location">{{ exp.location }}</div>{% endif %}
+        {% if exp.bullets %}
+        <ul class="bullet-list">
+          {% for bullet in exp.bullets %}
+          <li>{{ bullet }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if education %}
+    <section class="section">
+      <h2>{{ labels.education }}</h2>
+      {% for edu in education %}
+      <article class="entry">
+        <div class="entry-header">
+          <div>
+            <div class="entry-title">{{ edu.degree[lang] if edu.degree is mapping else edu.degree }}</div>
+            <div class="entry-company">{{ edu.institution }}</div>
+          </div>
+          <div class="entry-date">{{ edu.date[lang] if edu.date is mapping else edu.date }}</div>
+        </div>
+        {% if edu.location %}<div class="entry-location">{{ edu.location }}</div>{% endif %}
+        {% if edu.details %}
+        <ul class="bullet-list">
+          {% for detail in edu.details %}
+          <li>{{ detail }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if certifications %}
+    <section class="section">
+      <h2>{{ labels.certifications }}</h2>
+      <ul class="plain-list">
+        {% for cert in certifications %}
+        {% if cert.name is defined %}
+        <li>
+          <strong>{{ cert.name[lang] if cert.name is mapping else cert.name }}</strong>
+          {% if cert.issuer %} — {{ cert.issuer }}{% endif %}
+          {% if cert.date %} — {{ cert.date[lang] if cert.date is mapping else cert.date }}{% endif %}
+        </li>
+        {% else %}
+        <li>{{ cert }}</li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    {% if publications %}
+    <section class="section">
+      <h2>{{ labels.publications }}</h2>
+      {% for pub in publications %}
+      <article class="entry compact-entry">
+        <div class="entry-header">
+          <div>
+            <div class="entry-title">{{ pub.title[lang] if pub.title is mapping else pub.title }}</div>
+            {% if pub.venue %}<div class="entry-company">{{ pub.venue }}</div>{% endif %}
+          </div>
+          {% if pub.date %}<div class="entry-date">{{ pub.date[lang] if pub.date is mapping else pub.date }}</div>{% endif %}
+        </div>
+        {% set pub_description = pub.description[lang] if pub.description is mapping else pub.description %}
+        {% if pub_description %}<p class="project-description">{{ pub_description }}</p>{% endif %}
+        {% if pub.details %}
+        <ul class="bullet-list">
+          {% for bullet in pub.details %}
+          <li>{{ bullet[lang] if bullet is mapping else bullet }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </section>
+    {% endif %}
+  </div>
+</body>
+</html>

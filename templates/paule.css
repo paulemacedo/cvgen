@@ -160,6 +160,24 @@ li em {
 }
 
 /* =========================
+   ICONS (emoji preto e branco)
+========================= */
+.emoji-mono {
+  display: inline-block;
+  filter: grayscale(1) contrast(1.15);
+  opacity: 0.82;
+}
+
+/* =========================
+   SEPARATOR (bolinha)
+========================= */
+.sep {
+  color: var(--muted);
+  margin: 0 6px;
+  font-weight: 700;
+}
+
+/* =========================
    LINKS (override leve)
 ========================= */
 a {

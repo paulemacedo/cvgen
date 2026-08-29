@@ -12,6 +12,11 @@
   --card: #ffffff;
 }
 
+html, body {
+  background-color: #faf9f7 !important;
+  background-image: none !important;
+}
+
 /* =========================
    LAYOUT
 ========================= */
@@ -23,8 +28,22 @@ body {
   padding: 40px 20px 20px;
   line-height: 1.55;
   font-size: 13.5px;
-  background: var(--background);
+  background: #faf9f7 !important;
   color: var(--text);
+}
+
+@page {
+  size: A4;
+  margin: 8mm;
+  background: #faf9f7;
+}
+
+@media print {
+  html, body {
+    background: #faf9f7 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 }
 
 /* =========================

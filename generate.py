@@ -20,18 +20,20 @@ from typing import Any
 
 from jinja2 import Environment, FileSystemLoader
 
-AVAILABLE_TEMPLATES = ["ivory", "paule"]
-DEFAULT_TEMPLATE = "ivory"
+AVAILABLE_TEMPLATES = ["ivory", "paule", "blackluxury"]
+DEFAULT_TEMPLATE = "blackluxury"
 AVAILABLE_LANGUAGES = ["en", "pt"]
 EXAMPLES_FOLDER_NAME = "Examples"
 OUTPUT_HTML_DIR_NAME = "temp"
 TEMPLATE_CSS_FILES = {
     "ivory": "Ivory.css",
     "paule": "Paule.css",
+    "blackluxury": "BlackLuxury.css",
     "master": "master.css",
 }
 DEFAULT_LABELS = {
     "pt": {
+        "summary": "Resumo",
         "skills": "Competências",
         "experience": "Experiência Profissional",
         "education": "Formação Acadêmica",
@@ -40,6 +42,7 @@ DEFAULT_LABELS = {
         "publications": "Publicações",
     },
     "en": {
+        "summary": "Summary",
         "skills": "Skills",
         "experience": "Professional Experience",
         "education": "Education",
@@ -146,16 +149,29 @@ except ImportError:
 def generate_pdf(html_path: Path, pdf_path: Path) -> None:
     """Render an HTML file to PDF using a headless Chromium browser."""
     abs_html_path = html_path.resolve()
+
     with sync_playwright() as browser_context:
         browser = browser_context.chromium.launch()
         page = browser.new_page()
-        page.goto(f"file:///{abs_html_path.as_posix()}", wait_until="networkidle")
+
+        page.goto(
+            abs_html_path.as_uri(),
+            wait_until="domcontentloaded",
+            timeout=30000,
+        )
+
         page.pdf(
             path=str(pdf_path),
             format="A4",
             print_background=True,
-            margin={"top": "0", "right": "0", "bottom": "0", "left": "0"},
+            margin={
+                "top": "8mm",
+                "right": "8mm",
+                "bottom": "8mm",
+                "left": "8mm",
+            },
         )
+
         browser.close()
 
 
