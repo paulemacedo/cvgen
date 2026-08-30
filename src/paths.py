@@ -19,6 +19,12 @@ def resolve_topic_output_dir(profile_path: Path) -> Path:
     return OUTPUT_DIR.joinpath(*relative_parent.parts)
 
 
+def get_html_output_dir_for_profile(profile_path: Path) -> Path:
+    """Return profile-specific subdirectory for HTML output organization."""
+    profile_name = profile_path.stem.lower()
+    return HTML_OUTPUT_DIR / profile_name
+
+
 def get_template_css_filename(template_name: str) -> str:
     return TEMPLATE_CSS_FILES.get(template_name.lower(), f"{template_name}.css")
 

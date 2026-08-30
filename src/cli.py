@@ -54,26 +54,7 @@ def _run_generate_command(args: argparse.Namespace) -> None:
     template_names = AVAILABLE_TEMPLATES if args.template == "all" else [args.template]
     selected_profiles = _resolve_profile_paths(args.profile)
 
-    for profile_path in selected_profiles:
-        if args.profile.lower() == "all":
-            profile_files = selected_profiles
-        else:
-            profile_files = [profile_path]
-        for current_profile in profile_files:
-            from .generator import generate_cv_files
-
-            generate_cv_files(
-                current_profile,
-                requested_languages,
-                template_names,
-                explicit_language_request=False,
-                include_pdf=args.format == "pdf",
-            )
-
-    if args.profile.lower() != "all":
-        return
-
-    run_generation(requested_languages, template_names, explicit_language_request=False, include_pdf=args.format == "pdf")
+    run_generation(selected_profiles, requested_languages, template_names, explicit_language_request=False, include_pdf=args.format == "pdf")
 
 
 def _list_templates(_: argparse.Namespace) -> None:
@@ -143,7 +124,11 @@ def main(argv: list[str] | None = None) -> None:
         requested_languages, template_names, explicit_language_request = parse_cli_arguments(argv)
         from .generator import run_generation
 
-        run_generation(requested_languages, template_names, explicit_language_request)
+        run_generation(
+            requested_languages=requested_languages,
+            template_names=template_names,
+            explicit_language_request=explicit_language_request
+        )
         return
 
     parser = build_parser()

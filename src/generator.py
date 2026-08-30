@@ -8,7 +8,7 @@ from .config import DEFAULT_LABELS
 from .data import discover_profile_files, load_json_file
 from .export import copy_template_assets, generate_pdf
 from .localization import get_labels_for_language, resolve_profile_languages
-from .paths import DATA_DIR, HTML_OUTPUT_DIR, TEMPLATES_DIR, build_html_output_filename, build_output_basename, get_template_css_filename, resolve_topic_output_dir
+from .paths import DATA_DIR, HTML_OUTPUT_DIR, TEMPLATES_DIR, build_html_output_filename, build_output_basename, get_html_output_dir_for_profile, get_template_css_filename, resolve_topic_output_dir
 from .prepare import render_profile
 
 
@@ -37,7 +37,7 @@ def generate_cv_files(
 
     templates_to_use = ["Master"] if prefix == "master" else template_names
     pdf_output_dir = resolve_topic_output_dir(profile_path)
-    html_output_dir = HTML_OUTPUT_DIR
+    html_output_dir = get_html_output_dir_for_profile(profile_path)
     copy_template_assets(html_output_dir, templates_to_use)
     pdf_output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -76,16 +76,24 @@ def generate_cv_files(
 
 
 def run_generation(
-    requested_languages: list[str],
-    template_names: list[str],
-    explicit_language_request: bool,
+    profile_paths: list[Path] | None = None,
+    requested_languages: list[str] | None = None,
+    template_names: list[str] | None = None,
+    explicit_language_request: bool = False,
     include_pdf: bool = True,
 ) -> None:
-    data_files = discover_profile_files()
+    if profile_paths is None:
+        profile_paths = discover_profile_files()
+    if requested_languages is None:
+        from .config import AVAILABLE_LANGUAGES
+        requested_languages = AVAILABLE_LANGUAGES
+    if template_names is None:
+        from .config import AVAILABLE_TEMPLATES
+        template_names = AVAILABLE_TEMPLATES
 
-    if not data_files:
+    if not profile_paths:
         print("No data files found in the 'data' folder.")
         return
 
-    for profile_path in data_files:
+    for profile_path in profile_paths:
         generate_cv_files(profile_path, requested_languages, template_names, explicit_language_request, include_pdf=include_pdf)
