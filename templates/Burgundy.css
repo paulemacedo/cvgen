@@ -5,7 +5,8 @@
 ========================= */
 :root {
   --text: #0f0f0f;
-  --primary: #1155cc;
+  --primary: #800020;
+  --link-color: #58111A;
   --muted: #666666;
   --rule: #cccccc;
 }
@@ -14,11 +15,11 @@
    LAYOUT
 ========================= */
 body {
-  font-family: 'Nunito', Arial, sans-serif;
+  font-family: 'DM Sans', Arial, sans-serif;
   font-weight: 400;
   max-width: 770px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0px 20px;
   font-size: 10px;
   line-height: 1.5;
   background: var(--background);
@@ -31,13 +32,14 @@ body {
 header {
   text-align: center;
   margin-bottom: 18px;
-  font-family: 'Spectral', serif;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 h1 {
-  font-family: 'Spectral', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 500;
   font-size: 26px;
+  color: var(--primary);
   letter-spacing: 2.5px;
   text-transform: uppercase;
   margin-bottom: 4px;
@@ -181,5 +183,11 @@ li em {
    LINKS (override leve)
 ========================= */
 a {
-  color: var(--primary);
+  color: var(--link--muted);
+  text-decoration: none; 
+}
+
+a:hover {
+  color: var(--primary); /* Efeito opcional: clareia ligeiramente ao passar o mouse */
+  text-decoration: underline;
 }
