@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cv-generator"
+version = "0.1.0"
+description = "CLI para geração de currículos em HTML/PDF"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "jinja2>=3.1.0",
+  "playwright>=1.0.0",
+]
+
+[project.scripts]
+cvgen = "cv_generator.cli:main"
+
+[tool.setuptools]
+packages = ["cv_generator"]
