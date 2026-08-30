@@ -121,8 +121,8 @@ CV-Generator/
 │   ├── BlackLuxury.css
 │   ├── Ivory.html
 │   ├── Ivory.css
-│   ├── Paule.html
-│   ├── Paule.css
+│   ├── Burgundy.html
+│   ├── Burgundy.css
 │   ├── common.css
 │   └── ...
 ├── output/
@@ -180,7 +180,7 @@ O gerador detecta automaticamente os idiomas disponíveis no perfil e renderiza 
 Os templates disponíveis atualmente incluem:
 
 - `ivory`
-- `paule`
+- `Burgundy`
 - `blackluxury`
 
 Você pode usá-los com as versões longas ou curtas da CLI:
