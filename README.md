@@ -102,7 +102,7 @@ cvgen -p all -t ivory
 
 ```text
 CV-Generator/
-├── cv_generator/
+├── src/
 │   ├── __init__.py
 │   ├── __main__.py
 │   ├── cli.py
