@@ -115,8 +115,6 @@ CV-Generator/
 │   └── prepare.py
 ├── data/
 │   ├── Examples/
-│   ├── support.json
-│   ├── vaga-c-verde.json
 │   └── ...
 ├── templates/
 │   ├── BlackLuxury.html
