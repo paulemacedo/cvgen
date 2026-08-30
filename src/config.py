@@ -2,6 +2,7 @@ AVAILABLE_TEMPLATES = ["ivory", "paule", "blackluxury"]
 DEFAULT_TEMPLATE = "blackluxury"
 AVAILABLE_LANGUAGES = ["en", "pt"]
 EXAMPLES_FOLDER_NAME = "Examples"
+ARCHIVE_FOLDER_NAME = "Archive"
 OUTPUT_HTML_DIR_NAME = "temp"
 TEMPLATE_CSS_FILES = {
     "ivory": "Ivory.css",

@@ -8,93 +8,218 @@ Requires-Dist: jinja2>=3.1.0
 Requires-Dist: playwright>=1.0.0
 
 # CV Generator
-Este projeto é um gerador de currículos que utiliza templates HTML e CSS para criar currículos personalizados em diferentes idiomas e estilos. Os currículos são exportados em HTML e PDF.
 
-## Pré-requisitos
-Certifique-se de ter o seguinte instalado em sua máquina:
-- Python 3.9 ou superior
-- Gerenciador de pacotes `pip`
+Gerador de currículos em HTML/PDF com templates profissionais, suporte a múltiplos idiomas e CLI organizada para produção.
+
+## Visão geral
+
+O projeto lê dados em JSON, renderiza templates HTML com Jinja2 e exporta o resultado em PDF usando Playwright/Chromium. A estrutura foi dividida em módulos para separar:
+
+- conteúdo do perfil
+- localização e tradução
+- preparação dos dados
+- templates e assets
+- geração e exportação
+- interface de linha de comando
+
+## Requisitos
+
+- Python 3.10+
+- pip
+- Chromium/Playwright para geração de PDF
 
 ## Instalação
-1. Clone este repositório para sua máquina local:
-   ```bash
-   git clone https://github.com/paulemacedo/CV-Generator.git
-   ```
-2. Navegue até o diretório do projeto:
-   ```bash
-   cd CV-Generator
-   ```
-3. Crie e ative um ambiente virtual:
-   ```bash
-   python -m venv .venv
-   ```
-   No Windows:
-   ```bash
-   .venv\Scripts\activate
-   ```
-   Em Linux/macOS:
-   ```bash
-   source .venv/bin/activate
-   ```
-4. Instale as dependências necessárias dentro do ambiente virtual:
-   ```bash
-   python -m pip install --upgrade pip
-   python -m pip install -r requirements.txt
-   ```
-5. Instale o Chromium para geração de PDFs:
-   ```bash
-   python -m playwright install chromium
-   ```
 
-## Estrutura do Projeto
-- `generate.py`: Script principal para gerar os currículos.
-- `data/`: Contém os arquivos JSON com os dados de entrada para os currículos.
-- `output/`: Diretório onde os currículos gerados serão salvos.
-- `templates/`: Contém os templates HTML e CSS para os currículos.
+1. Clone o repositório:
 
-## Como Usar
-1. Prepare os dados de entrada:
-   - Copie `data/example.json` para um novo arquivo em `data/` e ajuste as informações necessárias para o currículo.
-2. Execute o script para gerar todos os currículos:
-   ```bash
-   python generate.py
-   ```
-   - O script detecta automaticamente os idiomas disponíveis (`pt`/`en`) em cada arquivo JSON e gera somente esses idiomas por perfil.
-   - JSONs híbridos (parte bilíngue + parte monolíngue) continuam funcionando: campos sem tradução explícita são reaproveitados no idioma em geração.
-   - JSONs monolíngues também são suportados.
-3. Opcionalmente, solicite idioma/template pela linha de comando:
-   ```bash
-   python generate.py en
-   python generate.py pt ivory
-   python generate.py all all
-   ```
-   - Se um idioma for solicitado mas não existir naquele perfil, o script avisa e ignora esse idioma apenas para o perfil afetado.
-4. Os currículos gerados serão salvos no diretório `output/` com padrão pronto para envio:
-   - PDFs finais: `output/`
-   - HTMLs auxiliares (debug/ajuste visual): `output/html/`
+```bash
+git clone https://github.com/paulemacedo/CV-Generator.git
+cd CV-Generator
+```
 
-   Padrão de nome dos arquivos:
-   - `CV-Nome-Area-Idioma`
-   - Exemplo: `CV-Paule-Macedo-Security-PT-BR.pdf`
+2. Crie e ative um ambiente virtual:
 
-   Estrutura atual:
-   ```
-   output/
-   ├── CV-Paule-Macedo-Security-PT-BR.pdf
-   ├── CV-Paule-Macedo-Security-EN-US.pdf
-   └── html/
-      ├── CV-Paule-Macedo-Security-PT-BR.html
-      └── CV-Paule-Macedo-Security-EN-US.html
-   ```
+```bash
+python -m venv .venv
+```
 
-## Personalização
-1. **Templates HTML e CSS**:
-   - Edite os arquivos em `templates/` para personalizar o estilo e o layout dos currículos.
-2. **Dados de Entrada**:
-   - Adicione ou modifique os arquivos JSON em `data/` para incluir novas informações.
+Windows:
 
-## Contribuição
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Linux/macOS:
+
+```bash
+source .venv/bin/activate
+```
+
+3. Instale as dependências:
+
+```bash
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m pip install -e .
+```
+
+4. Instale o navegador para PDF:
+
+```bash
+python -m playwright install chromium
+```
+
+## CLI
+
+Após a instalação, o comando global fica disponível:
+
+```bash
+cvgen --help
+```
+
+### Comandos disponíveis
+
+```bash
+cvgen generate --profile all --template blackluxury --language pt --format pdf
+cvgen generate --profile paule --template blackluxury --language pt --format html
+cvgen templates
+cvgen profiles
+cvgen validate
+```
+
+### Sintaxe curta suportada
+
+Também funciona a versão direta sem subcomando e com aliases curtos:
+
+```bash
+cvgen --template blackluxury
+cvgen -t blackluxury
+cvgen --language pt
+cvgen -l pt
+cvgen --profile all --template ivory
+cvgen -p all -t ivory
+```
+
+### Parâmetros principais
+
+- `--profile`, `-p`: nome do perfil ou `all`
+- `--template`, `-t`: `ivory`, `paule`, `blackluxury`, ou `all`
+- `--language`, `-l`: `pt`, `en`, ou `all`
+- `--format`, `-f`: `pdf` ou `html`
+
+## Estrutura do projeto
+
+```text
+CV-Generator/
+├── cv_generator/
+│   ├── __init__.py
+│   ├── __main__.py
+│   ├── cli.py
+│   ├── config.py
+│   ├── data.py
+│   ├── export.py
+│   ├── generator.py
+│   ├── localization.py
+│   ├── paths.py
+│   └── prepare.py
+├── data/
+│   ├── Examples/
+│   ├── support.json
+│   ├── vaga-c-verde.json
+│   └── ...
+├── templates/
+│   ├── BlackLuxury.html
+│   ├── BlackLuxury.css
+│   ├── Ivory.html
+│   ├── Ivory.css
+│   ├── Paule.html
+│   ├── Paule.css
+│   ├── common.css
+│   └── ...
+├── output/
+├── tests/
+│   ├── test_cli.py
+│   └── test_summary_template.py
+├── generate.py
+├── pyproject.toml
+├── requirements.txt
+├── README.md
+└── ...
+```
+
+## Uso em linha de comando
+
+### Gerar todos os perfis
+
+```bash
+cvgen generate --profile all --template all --language all --format pdf
+```
+
+### Gerar um perfil específico
+
+```bash
+cvgen generate --profile support --template blackluxury --language pt --format pdf
+```
+
+### Gerar apenas HTML para ajustes visuais
+
+```bash
+cvgen generate --profile all --template blackluxury --language pt --format html
+```
+
+Os arquivos gerados ficam em `output/` e em `output/temp/` conforme o fluxo do projeto.
+
+## Dados e perfis
+
+Os perfis ficam em `data/` e são arquivos JSON. Cada arquivo define informações como:
+
+- nome
+- headline
+- resumo
+- experiência
+- educação
+- projetos
+- skills
+- contato
+- publicações
+- certificações
+
+O gerador detecta automaticamente os idiomas disponíveis no perfil e renderiza somente os arquivos que fazem sentido para aquele JSON.
+
+## Templates
+
+Os templates disponíveis atualmente incluem:
+
+- `ivory`
+- `paule`
+- `blackluxury`
+
+Você pode usá-los com as versões longas ou curtas da CLI:
+
+```bash
+cvgen --template blackluxury
+cvgen -t blackluxury
+cvgen generate --template blackluxury
+cvgen generate -t blackluxury
+```
+
+A especialização principal do projeto foi no tema `blackluxury`, com layout single-column, leitura profissional e exportação PDF mais estável.
+
+## Validação
+
+Para validar os perfis e a estrutura do CLI:
+
+```bash
+cvgen validate
+python -m unittest discover -s tests -v
+```
 
 ## Licença
-Este projeto está licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+Este projeto está em desenvolvimento e pode ser adaptado para uso pessoal ou colaborativo. Consulte o arquivo de licença correspondente no repositório, se houver.
+
+## Observações
+
+- A geração de PDF depende do Chromium do Playwright.
+- O comando `cvgen` funciona após instalação em modo editable, via `pip install -e .`.
+- A compatibilidade com o script legado `generate.py` foi mantida para facilitar uso e migração gradual.

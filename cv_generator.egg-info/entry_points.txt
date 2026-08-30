@@ -1,2 +1,2 @@
 [console_scripts]
-cvgen = cv_generator.cli:main
+cvgen = src.cli:main

@@ -4,6 +4,9 @@
 # CV input data
 /data/*
 !/data/Examples/
+!/data/Archive/
+/data/Archive/*
+
 
 # Python cache and virtual environments
 __pycache__/
@@ -18,3 +21,6 @@ htmlcov/
 
 # Editor settings
 .vscode/
+
+# Generated packaging metadata
+*.egg-info/

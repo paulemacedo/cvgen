@@ -1,6 +1,6 @@
 import unittest
 
-from cv_generator import cli
+from src import cli
 
 
 class CliCommandTests(unittest.TestCase):

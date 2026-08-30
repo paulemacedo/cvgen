@@ -65,7 +65,7 @@ def generate_cv_files(
             print(f"CV gerado:  {html_path.relative_to(DATA_DIR.parent)}")
 
             try:
-                from cv_generator.export import PDF_ENABLED
+                from .export import PDF_ENABLED
 
                 if include_pdf and PDF_ENABLED:
                     pdf_path = pdf_output_dir / f"{output_basename}.pdf"

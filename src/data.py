@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from .config import EXAMPLES_FOLDER_NAME
+from .config import ARCHIVE_FOLDER_NAME, EXAMPLES_FOLDER_NAME
 from .paths import DATA_DIR
 
 
@@ -13,12 +13,17 @@ def is_examples_path(profile_path: Path) -> bool:
     return any(part.lower() == EXAMPLES_FOLDER_NAME.lower() for part in relative_parent.parts)
 
 
+def is_archive_path(profile_path: Path) -> bool:
+    relative_parent = profile_path.parent.relative_to(DATA_DIR)
+    return any(part.lower() == ARCHIVE_FOLDER_NAME.lower() for part in relative_parent.parts)
+
+
 def discover_profile_files() -> list[Path]:
     json_files = sorted(DATA_DIR.rglob("*.json"))
     if not json_files:
         return []
 
-    non_examples_files = [profile_path for profile_path in json_files if not is_examples_path(profile_path)]
+    non_examples_files = [profile_path for profile_path in json_files if not is_examples_path(profile_path) and not is_archive_path(profile_path)]
     if non_examples_files:
         return non_examples_files
 
