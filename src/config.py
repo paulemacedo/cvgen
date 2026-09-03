@@ -1,4 +1,4 @@
-AVAILABLE_TEMPLATES = ["ivory", "Burgundy", "blackluxury"]
+AVAILABLE_TEMPLATES = ["ivory", "burgundy", "blackluxury"]
 DEFAULT_TEMPLATE = "blackluxury"
 AVAILABLE_LANGUAGES = ["en", "pt", "es", "de", "fr"]
 EXAMPLES_FOLDER_NAME = "Examples"
@@ -6,7 +6,7 @@ ARCHIVE_FOLDER_NAME = "Archive"
 OUTPUT_HTML_DIR_NAME = "temp"
 TEMPLATE_CSS_FILES = {
     "ivory": "Ivory.css",
-    "Burgundy": "Burgundy.css",
+    "burgundy": "Burgundy.css",
     "blackluxury": "BlackLuxury.css",
     "master": "master.css",
 }
