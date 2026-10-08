@@ -173,16 +173,22 @@ Os perfis ficam em `data/` e são arquivos JSON. Cada arquivo define informaçõ
 - publicações
 - certificações
 
-Para definir o template padrão diretamente no perfil, adicione o campo `template` ao JSON:
+Os metadados do perfil ficam no início do JSON, dentro de `_meta`:
 
 ```json
 {
-  "template": "blackluxury"
+  "_meta": {
+    "id": "it",
+    "name": "Tecnologia da Informação",
+    "tags": ["tecnologia", "desenvolvimento", "suporte"],
+    "template": "blackluxury"
+  }
 }
 ```
 
-Os valores aceitos são `ivory`, `burgundy` e `blackluxury`. O campo é usado quando
+Os valores aceitos para `template` são `ivory`, `burgundy` e `blackluxury`. O campo é usado quando
 nenhum template é informado na CLI; `--template` sempre tem prioridade.
+O formato antigo com `template` na raiz continua sendo aceito.
 
 O gerador detecta automaticamente os idiomas disponíveis no perfil e renderiza somente os arquivos que fazem sentido para aquele JSON.
 

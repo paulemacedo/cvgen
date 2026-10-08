@@ -1,5 +1,10 @@
 {
-  "template": "burgundy",
+  "_meta": {
+    "id": "example",
+    "name": "Exemplo de Currículo",
+    "tags": ["exemplo", "desenvolvimento", "dados"],
+    "template": "burgundy"
+  },
   "nome": "John Doe",
 
   "location": {

@@ -1,5 +1,8 @@
 {
   "_meta": {
+    "id": "master-cv-example",
+    "name": "Master CV de Exemplo",
+    "tags": ["master", "exemplo", "fonte"],
     "description": "Master CV · Fonte dos dados para geração de currículos por vaga",
     "version": "1.0.0",
     "last_updated": "2026-04",

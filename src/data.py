@@ -40,10 +40,14 @@ def resolve_profile_templates(
     requested_templates: list[str],
     explicit_template_request: bool,
 ) -> list[str]:
-    if explicit_template_request or "template" not in profile:
+    if explicit_template_request:
         return requested_templates
 
-    configured_template = profile["template"]
+    meta = profile.get("_meta")
+    configured_template = meta.get("template") if isinstance(meta, dict) else profile.get("template")
+    if configured_template is None:
+        return requested_templates
+
     if not isinstance(configured_template, str):
         raise ValueError("The 'template' field must be a string.")
 
