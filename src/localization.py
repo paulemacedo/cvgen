@@ -59,14 +59,26 @@ def localize_text(value: Any, language: str) -> str:
 
 
 def localize_map(value: Any, language: str) -> dict[str, str]:
-    if isinstance(value, dict) and ("pt" in value or "en" in value):
+    if isinstance(value, dict) and any(
+        candidate_language in value for candidate_language in AVAILABLE_LANGUAGES
+    ):
+        localized_values = {
+            candidate_language: localize_text(value[candidate_language], candidate_language)
+            for candidate_language in AVAILABLE_LANGUAGES
+            if candidate_language in value
+        }
+        fallback = (
+            localized_values.get(language)
+            or localized_values.get("en")
+            or next(iter(localized_values.values()), "")
+        )
         return {
-            "pt": localize_text(value.get("pt", ""), "pt"),
-            "en": localize_text(value.get("en", ""), "en"),
+            candidate_language: localized_values.get(candidate_language, fallback)
+            for candidate_language in AVAILABLE_LANGUAGES
         }
 
     localized_value = localize_text(value, language)
-    return {"pt": localized_value, "en": localized_value}
+    return {candidate_language: localized_value for candidate_language in AVAILABLE_LANGUAGES}
 
 
 def has_meaningful_content(value: Any) -> bool:

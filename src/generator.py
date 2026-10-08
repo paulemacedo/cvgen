@@ -5,7 +5,7 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 
 from .config import DEFAULT_LABELS
-from .data import discover_profile_files, load_json_file
+from .data import discover_profile_files, load_json_file, resolve_profile_templates
 from .export import copy_template_assets, generate_pdf
 from .localization import get_labels_for_language, resolve_profile_languages
 from .paths import DATA_DIR, HTML_OUTPUT_DIR, TEMPLATES_DIR, build_html_output_filename, build_output_basename, get_html_output_dir_for_profile, get_template_css_filename, resolve_topic_output_dir
@@ -18,6 +18,7 @@ def generate_cv_files(
     template_names: list[str],
     explicit_language_request: bool,
     include_pdf: bool = True,
+    explicit_template_request: bool = False,
 ) -> None:
     profile = load_json_file(profile_path)
     labels_by_language = profile.get("labels", DEFAULT_LABELS)
@@ -35,7 +36,11 @@ def generate_cv_files(
         print(f"⚠️  {profile_path.name}: no languages to generate after filtering.")
         return
 
-    templates_to_use = ["Master"] if prefix == "master" else template_names
+    templates_to_use = (
+        ["Master"]
+        if prefix == "master"
+        else resolve_profile_templates(profile, template_names, explicit_template_request)
+    )
     pdf_output_dir = resolve_topic_output_dir(profile_path)
     html_output_dir = get_html_output_dir_for_profile(profile_path)
     copy_template_assets(html_output_dir, templates_to_use)
@@ -81,6 +86,7 @@ def run_generation(
     template_names: list[str] | None = None,
     explicit_language_request: bool = False,
     include_pdf: bool = True,
+    explicit_template_request: bool = False,
 ) -> None:
     if profile_paths is None:
         profile_paths = discover_profile_files()
@@ -96,4 +102,11 @@ def run_generation(
         return
 
     for profile_path in profile_paths:
-        generate_cv_files(profile_path, requested_languages, template_names, explicit_language_request, include_pdf=include_pdf)
+        generate_cv_files(
+            profile_path,
+            requested_languages,
+            template_names,
+            explicit_language_request,
+            include_pdf=include_pdf,
+            explicit_template_request=explicit_template_request,
+        )

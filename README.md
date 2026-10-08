@@ -95,7 +95,7 @@ cvgen -p all -t ivory
 
 - `--profile`, `-p`: nome do perfil ou `all`
 - `--template`, `-t`: `ivory`, `paule`, `blackluxury`, ou `all`
-- `--language`, `-l`: `pt`, `en`, ou `all`
+- `--language`, `-l`: `pt`, `en`, `es`, `de`, `fr`, ou `all`
 - `--format`, `-f`: `pdf` ou `html`
 
 ## Estrutura do projeto
@@ -172,6 +172,17 @@ Os perfis ficam em `data/` e são arquivos JSON. Cada arquivo define informaçõ
 - contato
 - publicações
 - certificações
+
+Para definir o template padrão diretamente no perfil, adicione o campo `template` ao JSON:
+
+```json
+{
+  "template": "blackluxury"
+}
+```
+
+Os valores aceitos são `ivory`, `burgundy` e `blackluxury`. O campo é usado quando
+nenhum template é informado na CLI; `--template` sempre tem prioridade.
 
 O gerador detecta automaticamente os idiomas disponíveis no perfil e renderiza somente os arquivos que fazem sentido para aquele JSON.
 

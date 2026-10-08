@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from .config import ARCHIVE_FOLDER_NAME, EXAMPLES_FOLDER_NAME
+from .config import ARCHIVE_FOLDER_NAME, AVAILABLE_TEMPLATES, EXAMPLES_FOLDER_NAME
 from .paths import DATA_DIR
 
 
@@ -33,3 +33,25 @@ def discover_profile_files() -> list[Path]:
 def load_json_file(file_path: Path) -> dict[str, Any]:
     with file_path.open(encoding="utf-8") as file_handle:
         return json.load(file_handle)
+
+
+def resolve_profile_templates(
+    profile: dict[str, Any],
+    requested_templates: list[str],
+    explicit_template_request: bool,
+) -> list[str]:
+    if explicit_template_request or "template" not in profile:
+        return requested_templates
+
+    configured_template = profile["template"]
+    if not isinstance(configured_template, str):
+        raise ValueError("The 'template' field must be a string.")
+
+    template_name = configured_template.strip().lower()
+    if template_name not in AVAILABLE_TEMPLATES:
+        raise ValueError(
+            f"Template '{configured_template}' from profile is not available. "
+            f"Available: {', '.join(AVAILABLE_TEMPLATES)}"
+        )
+
+    return [template_name]

@@ -54,7 +54,14 @@ def _run_generate_command(args: argparse.Namespace) -> None:
     template_names = AVAILABLE_TEMPLATES if args.template == "all" else [args.template]
     selected_profiles = _resolve_profile_paths(args.profile)
 
-    run_generation(selected_profiles, requested_languages, template_names, explicit_language_request=False, include_pdf=args.format == "pdf")
+    run_generation(
+        selected_profiles,
+        requested_languages,
+        template_names,
+        explicit_language_request=False,
+        explicit_template_request=args.template != "all",
+        include_pdf=args.format == "pdf",
+    )
 
 
 def _list_templates(_: argparse.Namespace) -> None:
@@ -127,7 +134,8 @@ def main(argv: list[str] | None = None) -> None:
         run_generation(
             requested_languages=requested_languages,
             template_names=template_names,
-            explicit_language_request=explicit_language_request
+            explicit_language_request=explicit_language_request,
+            explicit_template_request=len(argv) > 1,
         )
         return
 
