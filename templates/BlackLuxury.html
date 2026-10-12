@@ -15,7 +15,7 @@
       <div class="eyebrow">Professional Profile</div>
       <h1>{{ nome }}</h1>
       <div class="headline-row">
-        {% if location_text %}<span>{{ location_text }}</span>{% endif %}
+        {% if location_text %}<span>{{ location_text }}{% if age_text %} <span class="divider">•</span> {{ age_text }}{% endif %}</span>{% endif %}
         {% if headline_text %}
           {% if location_text %}<span class="divider">•</span>{% endif %}
           <span>{{ headline_text }}</span>
@@ -146,7 +146,9 @@
       <article class="entry compact-entry">
         <div class="entry-header">
           <div>
-            <div class="entry-title">{{ pub.title[lang] if pub.title is mapping else pub.title }}</div>
+            <div class="entry-title">
+              {% if pub.doi_url %}<a href="{{ pub.doi_url }}" target="_blank" rel="noopener noreferrer">{{ pub.title[lang] if pub.title is mapping else pub.title }}</a>{% else %}{{ pub.title[lang] if pub.title is mapping else pub.title }}{% endif %}
+            </div>
             {% if pub.venue %}<div class="entry-company">{{ pub.venue }}</div>{% endif %}
           </div>
           {% if pub.date %}<div class="entry-date">{{ pub.date[lang] if pub.date is mapping else pub.date }}</div>{% endif %}

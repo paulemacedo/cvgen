@@ -13,7 +13,7 @@
     </div>
     <h1>{{ name[lang] }}</h1>
     <div class="section">
-        <span class="label">{{ location[lang] }}</span><br>
+        <span class="label">{{ location[lang] }}{% if age_text %} — {{ age_text }}{% endif %}</span><br>
         <span class="label">Contato:</span>
         <ul class="item-list">
             <li>Email: {{ contact.email }}</li>
@@ -127,11 +127,10 @@
         <h2>{{ labels.publications }}</h2>
         {% for pub in publications %}
             <div style="margin-bottom:1em;">
-                <span class="label">{{ pub.title[lang] if pub.title is mapping else pub.title }}</span> — {{ pub.venue }}<br>
+                <span class="label">{% if pub.doi_url %}<a href="{{ pub.doi_url }}" target="_blank" rel="noopener noreferrer">{{ pub.title[lang] if pub.title is mapping else pub.title }}</a>{% else %}{{ pub.title[lang] if pub.title is mapping else pub.title }}{% endif %}</span> — {{ pub.venue }}<br>
                 <span class="subtle">{{ pub.date[lang] if pub.date is mapping else pub.date }}</span><br>
                 {% set pub_description = pub.description[lang] if pub.description is mapping else pub.description %}
                 {% if pub_description %}<span>{{ pub_description }}</span><br>{% endif %}
-                {% if pub.doi_url %}<span class="subtle">DOI: <a href="{{ pub.doi_url }}">{{ pub.doi }}</a></span>{% endif %}
             </div>
         {% endfor %}
     </div>

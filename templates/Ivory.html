@@ -17,7 +17,7 @@
     <div class="subtitle">{{ headline_text }}</div>
   </div>
   <div class="header-right">
-    <div class="subtitle">{{ location_text }}</div>
+    <div class="subtitle">{{ location_text }}{% if age_text %} <span class="sep">•</span> {{ age_text }}{% endif %}</div>
     <div class="contact">
       <span>
         {% if contact.linkedin %}
@@ -180,7 +180,9 @@
   <div class="entry">
     <div class="entry-header">
       <div>
-        <div class="entry-title">{{ pub.title[lang] if pub.title is mapping else pub.title }}</div>
+        <div class="entry-title">
+          {% if pub.doi_url %}<a href="{{ pub.doi_url }}" target="_blank" rel="noopener noreferrer">{{ pub.title[lang] if pub.title is mapping else pub.title }}</a>{% else %}{{ pub.title[lang] if pub.title is mapping else pub.title }}{% endif %}
+        </div>
         {% if pub.venue %}<div class="entry-sub">{{ pub.venue }}</div>{% endif %}
       </div>
       {% if pub.date %}<div class="entry-meta">{{ pub.date[lang] if pub.date is mapping else pub.date }}</div>{% endif %}
@@ -196,7 +198,6 @@
       {% endfor %}
     </ul>
     {% endif %}
-    {% if pub.doi %}<div>DOI: <a href="{{ pub.doi_url }}" target="_blank" rel="noopener noreferrer">{{ pub.doi }}</a></div>{% endif %}
   </div>
   {% endfor %}
 </section>

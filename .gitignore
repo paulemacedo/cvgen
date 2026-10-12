@@ -1,6 +1,9 @@
 # Project output
 /output
 
+# Scripts locais de automação
+update_cvs.py
+
 # CV input data
 /data/*
 !/data/Examples/

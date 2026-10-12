@@ -218,6 +218,7 @@ def render_profile(
         nome=display_name,
         location=profile.get("location", {}),
         location_text=localize_text(profile.get("location", {}), language),
+        age_text=localize_text(profile.get("age", {}), language),
         headline=profile.get("headline", {}),
         headline_text=localize_text(profile.get("headline", {}), language),
         summary=profile.get("summary", {}),

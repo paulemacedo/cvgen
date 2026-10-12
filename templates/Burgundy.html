@@ -17,7 +17,7 @@
     <!-- <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
     </svg> -->
-    {{ location_text }} <span class="sep">•</span>
+    {{ location_text }}{% if age_text %} <span class="sep">•</span> {{ age_text }}{% endif %} <span class="sep">•</span>
 
     <!-- <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2h4a2 2 0 0 1 2 2v3H3V8a2 2 0 0 1 2-2h4zm2-1v1h2V5h-2zM3 13h18v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6z"/>
@@ -218,7 +218,9 @@
   {% for pub in publications %}
   <div class="entry">
     <div class="entry-row">
-      <span class="entry-role">{{ pub.title[lang] if pub.title is mapping else pub.title }}</span>
+      <span class="entry-role">
+        {% if pub.doi_url %}<a href="{{ pub.doi_url }}" target="_blank" rel="noopener noreferrer">{{ pub.title[lang] if pub.title is mapping else pub.title }}</a>{% else %}{{ pub.title[lang] if pub.title is mapping else pub.title }}{% endif %}
+      </span>
       {% if pub.date %}<span class="entry-date">{{ pub.date[lang] if pub.date is mapping else pub.date }}</span>{% endif %}
     </div>
     {% if pub.venue %}
@@ -230,15 +232,9 @@
         {% for bullet in pub.details %}
         <li>{{ bullet[lang] if bullet is mapping else bullet }}</li>
         {% endfor %}
-        {% if pub.doi %}
-        <li>DOI: <a href="{{ pub.doi_url }}" target="_blank" rel="noopener noreferrer">{{ pub.doi }}</a></li>
-        {% endif %}
       </ul>
     {% elif pub_description %}
       <div>{{ pub_description }}</div>
-      {% if pub.doi %}
-      <div>DOI: <a href="{{ pub.doi_url }}" target="_blank" rel="noopener noreferrer">{{ pub.doi }}</a></div>
-      {% endif %}
     {% endif %}
   </div>
   {% endfor %}

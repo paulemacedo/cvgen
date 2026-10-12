@@ -1,6 +1,18 @@
-# CV Generator
-
-Gerador de currículos em HTML/PDF com templates profissionais, suporte a múltiplos idiomas e CLI organizada para produção.
+<div align="center">
+  <a href="index.html"><img src="cvgen.png" alt="cvgen Icon" width="100" height="100" /></a>
+  <h1>cvgen</h1>
+  <p>Uma ferramenta para criar currículos profissionais em HTML e PDF a partir de dados estruturados.</p>
+  <div>
+    <img src="https://img.shields.io/badge/Python-131327.svg?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+    <img src="https://img.shields.io/badge/Jinja2-131327.svg?style=for-the-badge&logo=jinja&logoColor=white" alt="Jinja2" />
+    <img src="https://img.shields.io/badge/Playwright-131327.svg?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright" />
+  </div>
+  <div>
+    <img src="https://img.shields.io/badge/Status-Active-131327.svg?style=flat" alt="Project Status" />
+    <img src="https://img.shields.io/badge/Made%20by-Paule-131327.svg" alt="Made by" />
+    <img src="https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F-131327.svg" alt="Love" />
+  </div>
+</div>
 
 ## Visão geral
 
@@ -24,8 +36,8 @@ O projeto lê dados em JSON, renderiza templates HTML com Jinja2 e exporta o res
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/paulemacedo/CV-Generator.git
-cd CV-Generator
+git clone https://github.com/paulemacedo/cvgen.git
+cd cvgen
 ```
 
 2. Crie e ative um ambiente virtual:
